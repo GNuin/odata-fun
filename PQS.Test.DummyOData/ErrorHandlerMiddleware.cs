@@ -31,7 +31,7 @@
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
-                var traceId = string.IsNullOrEmpty( context.TraceIdentifier) ? Guid.NewGuid().ToString() : context.TraceIdentifier;
+                
 
                 switch (error)
                 {
@@ -60,8 +60,8 @@
                         break;
                     default:
 
+                        var traceId = string.IsNullOrEmpty(context.TraceIdentifier) ? Guid.NewGuid().ToString() : context.TraceIdentifier;
 
-                        
                         _log.LogError(error, $"Unhandleld exception in {context.Request.Path}");
 
                         // unhandled error
